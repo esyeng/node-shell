@@ -1,6 +1,8 @@
 const pwdIn = require('./pwd');
 const lsCmd = require('./ls');
 const catCmd = require('./cat');
+const curlCmd = require('./curl');
+const { url } = require('inspector');
 
 process.stdout.write('prompt >  ');
 process.stdin.on('data', (data) => {
@@ -13,8 +15,10 @@ process.stdin.on('data', (data) => {
         lsCmd();
     } else if (cmdAr[0] == 'cat') {
         catCmd(cmdAr[1], 'utf8');
+    } else if (cmdAr[0] == 'curl') {
+        curlCmd(cmdAr[1]);
     }
-    else{
+    else {
         process.stdout.write('You typed: ' + cmd);
         process.stdout.write('\nprompt > ');
     }
